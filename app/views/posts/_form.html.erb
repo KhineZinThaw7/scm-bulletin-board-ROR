@@ -1,10 +1,22 @@
-<div class="card">
-  <div class="card-header">
-    <%= formTitle %>
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0"><%= formTitle %></h1>
+      </div><!-- /.col -->
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item active">Dashboard v3</li>
+        </ol>
+      </div><!-- /.col -->
+    </div>
   </div>
-  <div class="card-body">
+</div>
+<div class="content mx-3">
+  <div class="container-fluid py-4">
     <%= form_with model: @post do |form| %>
-    <div class="form-group row">
+      <div class="form-group row">
       <div class="col-md-2"> <%= form.label :title %> </div>
         <div class="col-md-6"><%= form.text_field :title ,class: "form-control" %></div>
           <% if @post.errors.any? %>
@@ -13,23 +25,24 @@
             <% end %>
           <% end %>
       </div>
-    <br/>
-    <div class="form-group row">
-      <div class="col-md-2"> <%= form.label :description %> </div>
-        <div class="col-md-6"> <%= form.text_area :description , class: "form-control" %> </div>
-        <% if @post.errors.any? %>
-            <% @post.errors.full_messages_for(:description).each do |message| %>
-              <span class="text-danger"><%= message %></span>
+      <br/>
+      <div class="form-group row">
+        <div class="col-md-2"> <%= form.label :description %> </div>
+          <div class="col-md-6"> <%= form.text_area :description , class: "form-control" %> </div>
+          <% if @post.errors.any? %>
+              <% @post.errors.full_messages_for(:description).each do |message| %>
+                <span class="text-danger"><%= message %></span>
+              <% end %>
             <% end %>
-          <% end %>
-    </div>
-    <br/>
-    <div class="row">
-      <div class="col-md-8">
-        <%= form.submit submitBtn, class: "btn btn-primary float-left" %>
-        <%= link_to "Back", posts_path, class: "btn btn-secondary float-right" %>
       </div>
-    </div>
+      <br/>
+      <div class="row">
+        <div class="col-md-8">
+          <%= form.submit submitBtn, class: "btn btn-primary float-left" %>
+          <%= link_to "Back", posts_path, class: "btn btn-secondary float-right" %>
+        </div>
+      </div>
     <% end %>
   </div>
 </div>
+

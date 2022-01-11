@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-  http_basic_authenticate_with name: "kzt", password: "secret", except: [:index, :show]
+  before_action :authorized
+
   # index post list
   def index
     @posts = PostsService.postList(params[:searchPost])
@@ -19,7 +20,7 @@ class PostsController < ApplicationController
   def create
     @post = PostsService.createPost(post_params)
     if @post.save
-      redirect_to root_path
+      redirect_to '/posts'
     else
       render :new
     end
@@ -34,7 +35,7 @@ class PostsController < ApplicationController
   def update
     @post = PostsService.updatePost(params[:id], post_params)
     if @post.update(post_params)
-      redirect_to root_path
+      redirect_to '/posts'
     else
       render :edit
     end
