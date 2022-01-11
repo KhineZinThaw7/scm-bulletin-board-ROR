@@ -1,0 +1,35 @@
+<div class="card">
+  <div class="card-header">
+    <%= formTitle %>
+  </div>
+  <div class="card-body">
+    <%= form_with model: @post do |form| %>
+    <div class="form-group row">
+      <div class="col-md-2"> <%= form.label :title %> </div>
+        <div class="col-md-6"><%= form.text_field :title ,class: "form-control" %></div>
+          <% if @post.errors.any? %>
+            <% @post.errors.full_messages_for(:title).each do |message| %>
+              <span class="text-danger"><%= message %></span>
+            <% end %>
+          <% end %>
+      </div>
+    <br/>
+    <div class="form-group row">
+      <div class="col-md-2"> <%= form.label :description %> </div>
+        <div class="col-md-6"> <%= form.text_area :description , class: "form-control" %> </div>
+        <% if @post.errors.any? %>
+            <% @post.errors.full_messages_for(:description).each do |message| %>
+              <span class="text-danger"><%= message %></span>
+            <% end %>
+          <% end %>
+    </div>
+    <br/>
+    <div class="row">
+      <div class="col-md-8">
+        <%= form.submit submitBtn, class: "btn btn-primary float-left" %>
+        <%= link_to "Back", posts_path, class: "btn btn-secondary float-right" %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

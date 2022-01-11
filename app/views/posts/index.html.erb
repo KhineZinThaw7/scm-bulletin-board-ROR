@@ -1,0 +1,48 @@
+<div class="py-2">
+<div class="row justify-content-end pb-3">
+  <div class="col-md-6">
+    <%= form_with url: '/posts', method: 'get', local: true, class: "d-flex" do |form| %>
+      <%= form.text_field :searchPost, class: "form-control mx-2" %>
+      <%= form.submit "Search", class: "btn btn-outline-success" %>
+    <% end %>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header">
+    <%= link_to "New Post", new_post_path, class: "btn btn-success float-right" %>
+    <h5>Post List</h5>
+  </div>
+  <div class="card-body"> 
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped">
+          <thead>
+              <tr>
+                  <th>Post title</th>
+                  <th>Post Description</th>
+                  <th>Posted User</th>
+                  <th>Posted Date</th>
+                  <th collapse=2>Operation</th>
+              </tr>
+          </thead>
+          <tbody>
+              <% @posts.each do |post| %>
+              <tr>
+                  <td><%= link_to post.title, post %></td>
+                  <td><%= post.description %></td>
+                  <td><%= post.create_user_id %></td>
+                  <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
+                  <td><%= link_to "Edit", edit_post_path(post), 
+                                  class: "btn btn-info" %>
+                  <%= link_to "Delete", post_path(post),
+                                  method: :delete,
+                                  data: { confirm: "Are you sure?" }, 
+                                  class: "btn btn-danger" %></td>
+              </tr>
+              <%end%>
+          </tbody>
+      </table>
+    </div>
+    <%= paginate @posts %>
+  </div>
+</div>
+</div>
