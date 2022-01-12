@@ -1,18 +1,29 @@
-<div class="py-2">
-<div class="row justify-content-end pb-3">
-  <div class="col-md-6">
-    <%= form_with url: '/posts', method: 'get', local: true, class: "d-flex" do |form| %>
-      <%= form.text_field :searchPost, class: "form-control mx-2" %>
-      <%= form.submit "Search", class: "btn btn-outline-success" %>
-    <% end %>
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0">Post List</h1>
+      </div><!-- /.col -->
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item active">Post</li>
+        </ol>
+      </div><!-- /.col -->
+    </div>
   </div>
 </div>
-<div class="card">
-  <div class="card-header">
-    <%= link_to "New Post", new_post_path, class: "btn btn-success float-right" %>
-    <h5>Post List</h5>
-  </div>
-  <div class="card-body"> 
+<div class="content mx-3">
+  <div class="container-fluid py-4">
+    <div class="row justify-content-between pb-3 pl-2">
+      <%= link_to "New Post", new_post_path, class: "btn btn-success float-right" %>
+      <div class="col-md-6">
+        <%= form_with url: '/posts', method: 'get', local: true, class: "d-flex" do |form| %>
+          <%= form.text_field :searchPost, class: "form-control mx-2" %>
+          <%= form.submit "Search", class: "btn btn-outline-success" %>
+        <% end %>
+      </div>
+    </div>
     <div class="table-responsive">
       <table class="table table-bordered table-striped">
           <thead>
@@ -44,5 +55,4 @@
     </div>
     <%= paginate @posts %>
   </div>
-</div>
 </div>
