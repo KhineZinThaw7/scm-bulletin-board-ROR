@@ -1,3 +1,4 @@
+require 'csv'
 class PostsController < ApplicationController
   before_action :authorized
 
@@ -48,6 +49,18 @@ class PostsController < ApplicationController
       redirect_to root_path
     else
       render :delete
+    end
+  end
+
+  # export
+  def export
+    @posts = Post::all
+    respond_to do |format|
+      format.csv do
+        response.headers['Content-Type'] = 'text/csv'
+        response.headers['Content-Disposition'] = "attachment; filename=posts.csv"
+        render template: "posts/index.csv.erb"
+      end
     end
   end
 

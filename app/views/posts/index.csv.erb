@@ -1,0 +1,5 @@
+<%- headers = ['Title', 'Description'] -%>
+<%= CSV.generate_line headers %>
+<%- @posts.each do |post| -%>
+  <%= CSV.generate_line([post.title, post.description]) -%>
+<%- end -%>
