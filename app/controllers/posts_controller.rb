@@ -19,7 +19,7 @@ class PostsController < ApplicationController
 
   # Create a new Post
   def create
-    @post = PostsService.createPost(post_params)
+    @post = PostsService.createPost(post_params, current_user.id)
     if @post.save
       redirect_to '/posts'
     else
@@ -68,6 +68,6 @@ class PostsController < ApplicationController
 
   # post parameters
   def post_params
-    params.require(:post).permit(:title, :description, :status, :create_post_id, :updated_post_id, :updated_at)
+    params.require(:post).permit(:title, :description)
   end
 end
