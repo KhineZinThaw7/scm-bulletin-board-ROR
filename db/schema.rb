@@ -16,9 +16,7 @@ ActiveRecord::Schema.define(version: 2022_01_11_043123) do
     t.string "title", null: false
     t.text "description", null: false
     t.integer "status", null: false
-    t.integer "create_user_id", null: false
-    t.integer "updated_user_id", null: false
-    t.integer "deleted_user_id"
+    t.integer "user_id", null: false
     t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -12,12 +12,10 @@ class PostsService
     # Create new Post
     # params post_params
     # return isSavePost
-    def self.createPost(post_params)
+    def self.createPost(post_params, userId)
       post = Post.new(post_params)
       post.status = 1 # default when create
-      post.create_user_id = 1 #It will change when user is created
-      post.updated_user_id = 1 #It will change when user is created
-      post.updated_at = Time.now
+      post.user_id = userId # It will change when post is create
       isSavePost = PostsRepository.createPost(post)
     end
 
@@ -30,9 +28,7 @@ class PostsService
     def self.updatePost(id, post_params)
       post = PostsRepository.getPostId(id)
       post.status = 1 # default when create
-      post.create_user_id = 1 #It will change when user is created
-      post.updated_user_id = 1 #It will change when user is created
-      post.updated_at = Time.now
+      post.user_id =  current_user.id # It will change when post is update
       isUpdatePost = PostsRepository.updatePost(post, post_params)
     end
 
