@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
   # index post list
   def index
-    @posts = PostsService.postList(params[:searchPost])
+    @posts = PostsService.postList(params[:searchPost], params[:sort], params[:direction])
   end
 
   # Post Detail

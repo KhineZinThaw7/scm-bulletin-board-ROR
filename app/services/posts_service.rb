@@ -1,7 +1,7 @@
 class PostsService
     # post list
-    def self.postList(searchPost)
-      @posts = PostsRepository.getPostList(searchPost)
+    def self.postList(searchPost, sort, direcion)
+      @posts = PostsRepository.getPostList(searchPost, sort, direcion)
     end
 
     # post detail

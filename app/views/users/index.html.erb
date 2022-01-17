@@ -2,12 +2,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0">Post List</h1>
+        <h1 class="m-0">User List</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">Post</li>
+          <li class="breadcrumb-item active">User</li>
         </ol>
       </div><!-- /.col -->
     </div>
@@ -17,12 +17,12 @@
   <div class="container-fluid py-4">
     <div class="row justify-content-between pb-3 pl-2">
       <div class="col-md-4">
-        <%= link_to "New Post", new_post_path, class: "btn btn-outline-success" %>
-        <a href="/posts/export.csv" class="btn btn-outline-primary">Export CSV</a>
+        <%= link_to "New User", new_user_path, class: "btn btn-outline-success" %>
+        <a href="/users/export.csv" class="btn btn-outline-primary">Export CSV</a>
       </div>
       <div class="col-md-6">
-        <%= form_with url: '/posts', method: 'get', local: true, class: "d-flex" do |form| %>
-          <%= form.text_field :searchPost, class: "form-control mx-2" %>
+        <%= form_with url: '/users', method: 'get', local: true, class: "d-flex" do |form| %>
+          <%= form.text_field :searchUser, class: "form-control mx-2" %>
           <%= form.submit "Search", class: "btn btn-outline-success" %>
         <% end %>
       </div>
@@ -32,15 +32,14 @@
           <thead>
               <tr>
                   <th>
-                    Post Title
-                    <%= link_to :sort => "title", :direction => 'desc' do  %><i class="fas fa-caret-square-up"></i><% end %>
-                    <%= link_to :sort => "title", :direction => 'asc' do %><i class="fas fa-caret-square-down"></i><% end %>  
+                    User Name
+                    <%= link_to :sort => "name", :direction => 'desc' do  %><i class="fas fa-caret-square-up"></i><% end %>
+                    <%= link_to :sort => "name", :direction => 'asc' do %><i class="fas fa-caret-square-down"></i><% end %>  
                   </th>
-                  <th>Post Description
-                    <%= link_to :sort => "description", :direction => 'desc' do %><i class="fas fa-caret-square-up"></i><% end %>
-                    <%= link_to :sort => "description", :direction => 'asc' do %><i class="fas fa-caret-square-down"></i><% end %>
+                  <th>Email
+                    <%= link_to :sort => "email", :direction => 'desc' do %><i class="fas fa-caret-square-up"></i><% end %>
+                    <%= link_to :sort => "email", :direction => 'asc' do %><i class="fas fa-caret-square-down"></i><% end %>
                   </th>
-                  <th>Posted User</th>
                   <th>Posted Date
                     <%= link_to :sort => "created_at", :direction => 'desc' do %><i class="fas fa-caret-square-up"></i><% end %>
                     <%= link_to :sort => "created_at", :direction => 'asc' do %><i class="fas fa-caret-square-down"></i><% end %>
@@ -49,15 +48,14 @@
               </tr>
           </thead>
           <tbody>
-              <% @posts.each do |post| %>
+              <% @users.each do |user| %>
               <tr>
-                  <td><%= link_to post.title, post %></td>
-                  <td><%= post.description %></td>
-                  <td><%= post.create_user_id %></td>
-                  <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
-                  <td><%= link_to "Edit", edit_post_path(post), 
+                  <td><%= link_to user.name, user %></td>
+                  <td><%= user.email %></td>
+                  <td><%= user.created_at.strftime('%Y/%m/%d') %></td>
+                  <td><%= link_to "Edit", edit_user_path(user), 
                                   class: "btn btn-info" %>
-                  <%= link_to "Delete", post_path(post),
+                  <%= link_to "Delete", user_path(user),
                                   method: :delete,
                                   data: { confirm: "Are you sure?" }, 
                                   class: "btn btn-danger" %></td>
@@ -66,6 +64,6 @@
           </tbody>
       </table>
     </div>
-    <%= paginate @posts %>
+    <%= paginate @users %>
   </div>
 </div>
