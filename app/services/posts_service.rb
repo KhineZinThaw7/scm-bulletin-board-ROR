@@ -25,10 +25,10 @@ class PostsService
     end
 
     # post edit
-    def self.updatePost(id, post_params)
+    def self.updatePost(id, post_params, userId)
       post = PostsRepository.getPostId(id)
       post.status = 1 # default when create
-      post.user_id =  current_user.id # It will change when post is update
+      post.user_id =  userId # It will change when post is update
       isUpdatePost = PostsRepository.updatePost(post, post_params)
     end
 

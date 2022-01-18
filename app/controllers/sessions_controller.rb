@@ -14,14 +14,8 @@ class SessionsController < ApplicationController
     end
   end
 
-  def welcome
-  end
-
-  def dashboard
-  end
-
   def destroy 
     session[:user_id] = nil
-    redirect_to root_path
+    redirect_to '/login'
   end
 end

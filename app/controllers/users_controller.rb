@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  layout 'admin/admin'
   before_action :authorized
 
   # index user list
@@ -20,6 +21,7 @@ class UsersController < ApplicationController
   def create
     @user = UsersService.createUser(user_params)
     if @user.save
+      session[:user_id] = @user.id
       redirect_to '/users'
     else
       render :new
