@@ -22,6 +22,7 @@ class UsersController < ApplicationController
     @user = UsersService.createUser(user_params)
     if @user.save
       session[:user_id] = @user.id
+      flash[:notice] = "User successfully created"
       redirect_to '/users'
     else
       render :new
@@ -37,6 +38,7 @@ class UsersController < ApplicationController
   def update
     @user = UsersService.updateUser(params[:id], user_params)
     if @user.update(user_params)
+      flash[:notice] = "User successfully updated"
       redirect_to '/users'
     else
       render :edit
@@ -47,6 +49,7 @@ class UsersController < ApplicationController
   def destroy
     isDeleteUser = UsersService.destroyUser(params[:id])
     if isDeleteUser
+      flash[:notice] = "User successfully deleted"
       redirect_to '/users'
     else
       render :delete
