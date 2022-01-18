@@ -1,5 +1,5 @@
-require 'csv'
 class PostsController < ApplicationController
+  layout 'admin/admin'
   before_action :authorized
 
   # index post list
@@ -19,7 +19,7 @@ class PostsController < ApplicationController
 
   # Create a new Post
   def create
-    @post = PostsService.createPost(post_params, current_user.id)
+    @post = PostsService.createPost(post_params, authUser.id)
     if @post.save
       redirect_to '/posts'
     else
@@ -34,7 +34,7 @@ class PostsController < ApplicationController
 
   # update post
   def update
-    @post = PostsService.updatePost(params[:id], post_params)
+    @post = PostsService.updatePost(params[:id], post_params, authUser.id)
     if @post.update(post_params)
       redirect_to '/posts'
     else
@@ -46,7 +46,7 @@ class PostsController < ApplicationController
   def destroy
     isDeletePost = PostsService.destroyPost(params[:id])
     if isDeletePost
-      redirect_to root_path
+      redirect_to '/posts'
     else
       render :delete
     end
