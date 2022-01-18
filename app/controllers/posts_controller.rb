@@ -21,6 +21,7 @@ class PostsController < ApplicationController
   def create
     @post = PostsService.createPost(post_params, authUser.id)
     if @post.save
+      flash[:notice] = "Post successfully created"
       redirect_to '/posts'
     else
       render :new
@@ -36,6 +37,7 @@ class PostsController < ApplicationController
   def update
     @post = PostsService.updatePost(params[:id], post_params, authUser.id)
     if @post.update(post_params)
+      flash[:notice] = "Post successfully updated"
       redirect_to '/posts'
     else
       render :edit
@@ -46,6 +48,7 @@ class PostsController < ApplicationController
   def destroy
     isDeletePost = PostsService.destroyPost(params[:id])
     if isDeletePost
+      flash[:notice] = "Post successfully deleted"
       redirect_to '/posts'
     else
       render :delete
