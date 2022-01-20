@@ -3,11 +3,16 @@ class RegisterController < ApplicationController
 
   def new
     @user = User
+    redirect_to '/' if logged_in?
   end
 
   def create
-    @user = User.create(params.permit(:name, :email, :password))
-    session[:user_id] = @user.id
-    redirect_to '/dashboard'
+    @user = User.create(params.permit(:name, :email, :password, :role_id))
+    if @user.save
+      session[:user_id] = @user.id
+      redirect_to '/dashboard'
+    else
+      redirect_to '/register'
+    end
   end
 end

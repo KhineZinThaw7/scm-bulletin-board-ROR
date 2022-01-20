@@ -65,9 +65,11 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="/users"><i class="fa fa-users"></i> Users</a>
-          </li>
+          <% if isAdmin? %>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/users"><i class="fa fa-users"></i> Users</a>
+            </li>
+          <% end %>
           <li class="nav-item">
             <a class="nav-link" href="/posts"><i class="fa fa-sticky-note"></i> Posts</a>
           </li>

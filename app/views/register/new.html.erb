@@ -8,24 +8,25 @@
                 <form accept-charset="UTF-8" action="/register/create" method="post">
                     <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden" />
                     
+                    <input type="hidden" name="role_id" value="2" class="form-control">
                     <div class="form-group">
                         <label for="">Name</label>
-                        <input type="text" name="name" id="" class="form-control">
+                        <input type="text" name="name" class="form-control">
                     </div>
                 
                     <div class="form-group">
                         <label for="">Email</label>
-                        <input type="email" name="email" id="" class="form-control">
+                        <input type="email" name="email" class="form-control">
                     </div>
                 
                     <div class="form-group">
                         <label for="">Password</label>
-                        <input type="password" name="password" id="" class="form-control">
+                        <input type="password" name="password" class="form-control">
                     </div>
 
                     <div class="form-group">
                         <label for="">Confirm Password</label>
-                        <input type="password" name="confirm_password" id="" class="form-control">
+                        <input type="password" name="confirm_password" class="form-control">
                     </div>
 
                     <div class="form-group">
