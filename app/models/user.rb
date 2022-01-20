@@ -12,4 +12,5 @@ class User < ApplicationRecord
     paginates_per 10
 
     has_many :posts, dependent: :destroy
+    belongs_to :role
 end

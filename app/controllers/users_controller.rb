@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   layout 'admin/admin'
   before_action :authorized
+  before_action :adminRole
 
   # index user list
   def index
@@ -72,6 +73,6 @@ class UsersController < ApplicationController
 
   # user parameters
   def user_params
-    params.require(:user).permit(:name, :email, :password)
+    params.require(:user).permit(:name, :email, :password, :role_id)
   end
 end

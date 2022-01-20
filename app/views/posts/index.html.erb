@@ -62,12 +62,15 @@
                     <% end %>
                   </td>
                   <td><%= post.created_at.strftime('%b %d, %Y') %></td>
-                  <td><%= link_to "Edit", edit_post_path(post), 
-                                  class: "btn btn-info" %>
-                  <%= link_to "Delete", post_path(post),
-                                  method: :delete,
-                                  data: { confirm: "Are you sure?" }, 
-                                  class: "btn btn-danger" %></td>
+                  <td>
+                  <% if postUser(post.id) || isAdmin? %>
+                    <%= link_to "Edit", edit_post_path(post), 
+                                    class: "btn btn-info" %>
+                    <%= link_to "Delete", post_path(post),
+                                    method: :delete,
+                                    data: { confirm: "Are you sure?" }, 
+                                    class: "btn btn-danger" %></td>
+                  <% end %>
               </tr>
               <%end%>
           </tbody>
