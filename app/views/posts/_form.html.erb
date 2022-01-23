@@ -42,6 +42,18 @@
       </div>
       <br/>
       <div class="form-group row">
+        <div class="col-md-2"> <%= form.label :category_id %> </div>
+        <div class="col-md-6 mt-1"><%= form.select :category_id, Category.all.pluck(:name,:id), {prompt: @post.category ? @post.category.name : 'Select Category'}, {class: "form-control"}%></div>
+        <% if @post.errors.any? %>
+          <ul>
+            <% @post.errors.full_messages_for(:category_id).each do |message| %>
+              <li class="text-danger"><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+      <br>
+      <div class="form-group row">
         <div class="col-md-2"> <%= form.label :image %> </div>
           <div class="col-md-4"> <%= form.file_field :image , class: "form-control" %></div>
           <div class="col-md-3">

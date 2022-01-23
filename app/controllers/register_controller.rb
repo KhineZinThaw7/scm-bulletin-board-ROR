@@ -3,6 +3,7 @@ class RegisterController < ApplicationController
 
   def new
     @user = User
+    @categories = Category.all
     redirect_to '/' if logged_in?
   end
 

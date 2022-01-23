@@ -5,6 +5,7 @@ class CreatePosts < ActiveRecord::Migration[6.1]
       t.text :description, null: false
       t.integer :status, null: false
       t.integer :user_id, null: false
+      t.integer :category_id, null: false
       t.datetime :deleted_at
       t.timestamps
     end

@@ -1,0 +1,41 @@
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0"><%= formTitle %></h1>
+      </div><!-- /.col -->
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item active">Category</li>
+        </ol>
+      </div><!-- /.col -->
+    </div>
+  </div>
+</div>
+<hr>
+<div class="content mx-3">
+  <div class="container-fluid py-4">
+    <%= form_with model: @category do |form| %>
+      <div class="form-group row">
+      <div class="col-md-2"> <%= form.label :name %> </div>
+        <div class="col-md-6"><%= form.text_field :name ,class: "form-control" %></div>
+          <% if @category.errors.any? %>
+            <ul>
+              <% @category.errors.full_messages_for(:name).each do |message| %>
+                <li class="text-danger"><%= message %></li>
+              <% end %>
+            </ul>
+          <% end %>
+      </div>
+      <br/>
+      <div class="row">
+        <div class="col-md-8">
+          <%= form.submit submitBtn, class: "btn btn-primary float-left" %>
+          <%= link_to "Back", categories_path, class: "btn btn-secondary float-right" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
