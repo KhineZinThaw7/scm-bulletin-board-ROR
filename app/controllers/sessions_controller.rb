@@ -12,7 +12,8 @@ class SessionsController < ApplicationController
        session[:user_id] = @user.id
        redirect_to '/dashboard'
     else
-       redirect_to '/login'
+      flash[:notice] = "Something Wrong, please check your registration email and password!"
+      redirect_to '/login'
     end
   end
 
