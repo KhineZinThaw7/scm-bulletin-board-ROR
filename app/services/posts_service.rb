@@ -14,7 +14,6 @@ class PostsService
     # return isSavePost
     def self.createPost(post_params, userId)
       post = Post.new(post_params)
-      post.status = 1 # default when create
       post.user_id = userId # It will change when post is create
       isSavePost = PostsRepository.createPost(post)
     end
@@ -27,7 +26,6 @@ class PostsService
     # post edit
     def self.updatePost(id, post_params, userId)
       post = PostsRepository.getPostId(id)
-      post.status = 1 # default when create
       post.user_id =  userId # It will change when post is update
       isUpdatePost = PostsRepository.updatePost(post, post_params)
     end
