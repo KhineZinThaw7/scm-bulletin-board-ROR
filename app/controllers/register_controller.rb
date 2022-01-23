@@ -13,6 +13,7 @@ class RegisterController < ApplicationController
       session[:user_id] = @user.id
       redirect_to '/dashboard'
     else
+      flash[:notice] = "Something Wrong, please check your registration information!"
       redirect_to '/register'
     end
   end
