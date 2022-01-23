@@ -1,7 +1,7 @@
 class UsersService
     # user list
-    def self.userList(searchUser, sort, direction)
-      @users = UsersRepository.getUserList(searchUser, sort, direction)
+    def self.userList(searchName, searchEmail, sort, direction)
+      @users = UsersRepository.getUserList(searchName, searchEmail, sort, direction)
     end
 
     # user detail

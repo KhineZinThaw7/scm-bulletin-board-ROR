@@ -2,7 +2,8 @@ class PostsRepository
   # Get All Post List
   def self.getPostList(searchPost, sort, direction)
     if searchPost
-      @posts = Post.where(["title LIKE ?","%#{searchPost}%"]).order('id desc').page
+      @posts =  Post.where("title LIKE ? OR description LIKE ? OR created_at LIKE ?", 
+                "%#{searchPost}%", "%#{searchPost}%", "%#{searchPost}%").order('id DESC').page
     elsif sort
       @posts = Post.order(sort + ' ' + direction).page
     else

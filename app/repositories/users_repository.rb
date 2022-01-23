@@ -1,8 +1,9 @@
 class UsersRepository
   # Get All user List
-  def self.getUserList(searchUser, sort, direction)
-    if searchUser
-      @users = User.where(["name LIKE ?","%#{searchUser}%"]).order('id desc').page
+  def self.getUserList(searchName, searchEmail, sort, direction)
+    if searchName && searchEmail
+      @users = User.where("name LIKE ? AND email LIKE ?", 
+        "%#{searchName}%", "%#{searchEmail}%").order('id desc').page
     elsif sort
       @users = User.order(sort + ' ' + direction).page
     else
