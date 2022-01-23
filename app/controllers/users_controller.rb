@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   # index user list
   def index
-    @users = UsersService.userList(params[:searchUser], params[:sort], params[:direction])
+    @users = UsersService.userList(params[:searchName], params[:searchEmail], params[:sort], params[:direction])
   end
 
   # user Detail
@@ -22,7 +22,6 @@ class UsersController < ApplicationController
   def create
     @user = UsersService.createUser(user_params)
     if @user.save
-      session[:user_id] = @user.id
       flash[:notice] = "User successfully created"
       redirect_to '/users'
     else

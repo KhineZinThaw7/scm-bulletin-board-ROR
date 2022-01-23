@@ -28,7 +28,7 @@
       </div>
       <div class="col-md-6">
         <%= form_with url: '/posts', method: 'get', local: true, class: "d-flex" do |form| %>
-          <%= form.text_field :searchPost, class: "form-control mx-2" %>
+          <%= form.text_field :searchPost, class: "form-control mx-2", value: params[:searchPost], placeholder: "Search..." %>
           <%= form.submit "Search", class: "btn btn-outline-success" %>
         <% end %>
       </div>
