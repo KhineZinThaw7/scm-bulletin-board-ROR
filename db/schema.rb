@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2022_01_23_040541) do
   create_table "posts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title", null: false
     t.text "description", null: false
-    t.integer "status", null: false
+    t.boolean "status", default: true
     t.integer "user_id", null: false
     t.integer "category_id", null: false
     t.datetime "deleted_at"

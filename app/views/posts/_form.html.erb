@@ -69,6 +69,21 @@
             </ul>
           <% end %>
       </div>
+      <br>
+      <% if isAdmin? %>
+        <div class="form-group row">
+          <div class="col-md-2"> <%= form.label :status %> </div>
+          <div class="col-md-1 mt-1"><%= form.check_box :status %></div>
+          <% if @post.errors.any? %>
+            <ul>
+              <% @post.errors.full_messages_for(:status).each do |message| %>
+                <li class="text-danger"><%= message %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        </div>
+        <br>
+      <% end %>
       <div class="row">
         <div class="col-md-8">
           <%= form.submit submitBtn, class: "btn btn-primary float-left" %>
