@@ -43,6 +43,7 @@
                     <%= link_to :sort => "title", :direction => 'asc' do %><i class="fas fa-caret-square-down"></i><% end %>  
                   </th>
                   <th>Posted User</th>
+                  <th>Category</th>
                   <th>Post Image</th>
                   <th>Posted Date
                     <%= link_to :sort => "created_at", :direction => 'desc' do %><i class="fas fa-caret-square-up"></i><% end %>
@@ -56,6 +57,7 @@
               <tr>
                   <td><%= link_to post.title, post %></td>
                   <td><%= post.user ? post.user.name : '' %></td>
+                  <td><%= post.category ? post.category.name : '' %></td>
                   <td>
                     <% if post.image.attached? %>
                       <%= image_tag post.image, style: "width: 100px; border: 1px solid gray;" %>
