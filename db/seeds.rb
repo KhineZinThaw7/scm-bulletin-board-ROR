@@ -9,8 +9,8 @@
 Role.create(name: 'Admin')
 Role.create(name: 'User')
 
-User.create(name: 'KZT', email: 'kzt@gmail.com', password: '12345678', role_id: 1)
-User.create(name: 'Ma Ma', email: 'mama@gmail.com', password: '12345678', role_id: 2)
+User.create(name: 'Admin', email: 'admin@gmail.com', password: '12345678', role_id: 1)
+User.create(name: 'User', email: 'user@gmail.com', password: '12345678', role_id: 2)
 
 Category.create(name: "Travel Blogs")
 Category.create(name: "Music Blogs")

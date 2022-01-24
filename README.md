@@ -1,24 +1,23 @@
-# README
+# Bulletin Board SCM (ROR)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Installation
 
-Things you may want to cover:
+Create database and run this command
 
-* Ruby version
+```
+bundle install
+rails db:migrate
+rails db:seed
+rails webpacker:install
+yarn install
+rails server
+```
 
-* System dependencies
+Now you can login using email and password
 
-* Configuration
+```
+ Admin
+ email : admin@gmail.com
+ password : 12345678'
+```
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
