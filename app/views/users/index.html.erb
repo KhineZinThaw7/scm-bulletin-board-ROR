@@ -64,10 +64,13 @@
                   <td><%= user.created_at.strftime('%Y/%m/%d') %></td>
                   <td><%= link_to "Edit", edit_user_path(user), 
                                   class: "btn btn-info" %>
-                  <%= link_to "Delete", user_path(user),
-                                  method: :delete,
-                                  data: { confirm: "Are you sure?" }, 
-                                  class: "btn btn-danger" %></td>
+                  <% if authUser.id != user.id %>
+                    <%= link_to "Delete", user_path(user),
+                                    method: :delete,
+                                    data: { confirm: "Are you sure?" }, 
+                                    class: "btn btn-danger" %>
+                  <% end %>
+                  </td>
               </tr>
               <%end%>
           </tbody>

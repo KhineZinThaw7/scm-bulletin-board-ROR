@@ -1,5 +1,7 @@
 class Category < ApplicationRecord
+    # validation
     validates :name, presence: true
 
-    has_many :posts, dependent: :destroy
+    # one to many with posts
+    has_many :posts
 end

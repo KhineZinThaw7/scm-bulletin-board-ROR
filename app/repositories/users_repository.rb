@@ -1,43 +1,36 @@
 class UsersRepository
   # Get All user List
   def self.getUserList(searchName, searchEmail, sort, direction)
-    if searchName && searchEmail
-      @users = User.where("name LIKE ? AND email LIKE ?", 
-        "%#{searchName}%", "%#{searchEmail}%").order('id desc').page
+    if searchName || searchEmail
+      users = User.where("name LIKE ? && email LIKE ?", 
+              "%#{searchName}%", "%#{searchEmail}%").order('id desc').page
     elsif sort
-      @users = User.order(sort + ' ' + direction).page
+      users = User.order(sort + ' ' + direction).page # sort column
     else
-      @users = User.page
+      users = User.order('id desc').page # all user order by id desc
     end
   end
 
-  # Get user Detail
-  def self.getUserDetail(id)
-    @user = User.find(id)
-  end
-
-  # Create new user
+  # createUser
+  # return isSaveUser
   def self.createUser(user)
     isSaveUser = user
   end
 
-  # edit user
-  def self.getUserEdit(id)
-    @user = User.find(id)
-  end
-
-  # update user
+  # updateUser
+  # return isUpdateUser
   def self.updateUser(user, user_params)
     isUpdateUser = user
   end
 
-  # delete user
+  # destroyUser
+  # return isDeleteUser
   def self.destroyUser(user)
     isDeleteUser = user.delete
   end
 
-  # get user id
+  # Find user by id
   def self.getUserId(id)
-    @user = User.find(id)
+    user = User.find(id)
   end
 end

@@ -10,7 +10,10 @@ Rails.application.routes.draw do
   get 'posts/export', to: 'posts#export'
   get 'users/export', to: 'users#export'
 
-  # post, category ad user crud
+  # user profile
+  get 'profile', to: 'users#profile',  as: 'profile'
+
+  # post, category and user crud
   resources :categories
   resources :posts
   resources :users
@@ -22,4 +25,5 @@ Rails.application.routes.draw do
   get '/', to: 'landing#index'
   get '/blogs', to: 'landing#blog'
   get '/category/:id/posts', to: 'landing#categoryPosts', as: 'categoryPosts'
+  get '/post/:id', to: 'landing#postDetail', as: 'postDetail'
 end

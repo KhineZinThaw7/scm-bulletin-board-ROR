@@ -2,14 +2,17 @@ class CategoriesController < ApplicationController
   layout 'admin/admin'
   before_action :authorized
 
+  # category list
   def index
     @categories = CategoriesService.categoryList
   end
 
+  # new category form
   def new
     @category = Category.new
   end
 
+  # create category
   def create
     @category = CategoriesService.createCategory(category_params)
     if @category.save
@@ -20,10 +23,12 @@ class CategoriesController < ApplicationController
     end
   end
 
+  # edit category form
   def edit
     @category = CategoriesService.editCategory(params[:id])
   end
 
+  # update category
   def update
     @category = CategoriesService.updateCategory(params[:id], category_params)
     if @category.update(category_params)
@@ -34,10 +39,12 @@ class CategoriesController < ApplicationController
     end
   end
 
+  # category detail
   def show
     @category = CategoriesService.categoryDetail(params[:id])
   end
 
+  # delete category
   def destroy
     isDeleteCategory = CategoriesService.destroyCategory(params[:id])
     if isDeleteCategory
@@ -50,6 +57,7 @@ class CategoriesController < ApplicationController
 
   private
 
+  # parameters from request
   def category_params
     params.require(:category).permit(:name)
   end

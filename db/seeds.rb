@@ -11,3 +11,8 @@ Role.create(name: 'User')
 
 User.create(name: 'KZT', email: 'kzt@gmail.com', password: '12345678', role_id: 1)
 User.create(name: 'Ma Ma', email: 'mama@gmail.com', password: '12345678', role_id: 2)
+
+Category.create(name: "Travel Blogs")
+Category.create(name: "Music Blogs")
+
+Post.create(title: "Favorite Song", description: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.", user_id: 1, category_id: 2)

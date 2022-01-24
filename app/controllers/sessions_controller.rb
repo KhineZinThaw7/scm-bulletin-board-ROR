@@ -1,13 +1,15 @@
 class SessionsController < ApplicationController
   skip_before_action :authorized, only: [:new, :create, :welcome]
 
+  # login form
   def new
     @categories = Category.all
     redirect_to '/' if logged_in?
   end
 
+  # if login success, auth session create
   def create
-    @user = User.find_by(email: params[:email])
+    @user = User.find_by(email: params[:email]) 
     if @user && @user.authenticate(params[:password])
        session[:user_id] = @user.id
        redirect_to '/dashboard'
@@ -17,6 +19,7 @@ class SessionsController < ApplicationController
     end
   end
 
+  # if logout, session destroy
   def destroy 
     session[:user_id] = nil
     redirect_to '/login'

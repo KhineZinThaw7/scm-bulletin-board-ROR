@@ -1,0 +1,21 @@
+<%= render 'landing/header', title: "POST DETAIL PAGE" %>
+<div class="container">
+<div class="row mb-2">
+    <div class="col-md-12">
+        <div class="card flex-md-row mb-4 box-shadow h-md-250 border border-info">
+            <div class="card-body d-flex flex-column align-items-start">
+            <strong class="d-inline-block mb-2 text-primary"><%= @post.user ? @post.user.name : 'Bob' %></strong>
+            <h3 class="mb-0">
+                <a class="text-dark" href="#"><%= @post.title %></a>
+            </h3>
+            <div class="mb-1 text-muted"><%= @post.created_at.strftime('%b %d, %Y') %></div>
+            <p class="card-text mb-auto"><%= @post.description %></p>
+            </div>
+            <% if @post.image.attached? %>
+                <%= image_tag @post.image, style: "width: 150px", class: "card-img-right flex-auto d-none d-md-block" %>
+            <% end %>
+        </div>
+    </div>
+  </div>
+</div>
+</div>

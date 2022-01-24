@@ -1,12 +1,13 @@
 class RegisterController < ApplicationController
   skip_before_action :authorized, only: [:new, :create]
 
+  # register form
   def new
-    @user = User
     @categories = Category.all
     redirect_to '/' if logged_in?
   end
 
+  # create user
   def create
     @user = User.create(params.permit(:name, :email, :password, :role_id))
     if @user.save

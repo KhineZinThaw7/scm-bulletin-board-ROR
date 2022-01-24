@@ -5,7 +5,8 @@ class UsersController < ApplicationController
 
   # index user list
   def index
-    @users = UsersService.userList(params[:searchName], params[:searchEmail], params[:sort], params[:direction])
+    @users = UsersService.userList(params[:searchName], params[:searchEmail], 
+              params[:sort], params[:direction])
   end
 
   # user Detail
@@ -54,6 +55,12 @@ class UsersController < ApplicationController
     else
       render :delete
     end
+  end
+
+  # user profile
+  def profile
+    @user = UsersService.profile(authUser.id)
+    render template: 'users/profile'
   end
 
   # export
