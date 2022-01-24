@@ -16,8 +16,8 @@ rails server
 Now you can login using email and password
 
 ```
- Admin
+ Login ad Admin
  email : admin@gmail.com
- password : 12345678'
+ password : 12345678
 ```
 
