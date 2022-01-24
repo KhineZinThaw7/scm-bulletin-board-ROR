@@ -13,10 +13,9 @@ yarn install
 rails server
 ```
 
-Now you can login using email and password
+Now you can login as admin using email and password
 
 ```
- Login ad Admin
  email : admin@gmail.com
  password : 12345678
 ```
