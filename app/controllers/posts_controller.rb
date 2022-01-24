@@ -67,6 +67,21 @@ class PostsController < ApplicationController
     end
   end
 
+  def import
+    if params[:importFile]
+      @post = Post.import(params[:importFile])
+      if @post
+        flash[:danger] = "Post CSV import failed!"
+        flash[:error] = @post
+      else
+        flash[:notice] = "Post successfully imported!"
+      end  
+    else
+      flash[:danger] = "Please choose upload csv file!"
+    end
+    redirect_to '/posts'
+  end
+
   private
 
   # post parameters

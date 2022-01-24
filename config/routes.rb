@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   # post and user csv export
   get 'posts/export', to: 'posts#export'
   get 'users/export', to: 'users#export'
+  post 'posts/import', to: 'posts#import'
 
   # user profile
   get 'profile', to: 'users#profile',  as: 'profile'
