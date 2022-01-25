@@ -67,17 +67,18 @@ class PostsController < ApplicationController
     end
   end
 
+  # import
   def import
-    if params[:importFile]
+    if params[:importFile] # if param file is contained?
       @post = Post.import(params[:importFile])
       if @post
-        flash[:danger] = "Post CSV import failed!"
+        flash[:danger] = "Post CSV import failed!" # if get validation error
         flash[:error] = @post
       else
-        flash[:notice] = "Post successfully imported!"
+        flash[:notice] = "Post successfully imported!" # if success
       end  
     else
-      flash[:danger] = "Please choose upload csv file!"
+      flash[:danger] = "Please choose upload csv file!" # if parama file is not contained, get alert message
     end
     redirect_to '/posts'
   end
