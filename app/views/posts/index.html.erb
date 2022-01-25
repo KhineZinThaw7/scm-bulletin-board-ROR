@@ -1,33 +1,55 @@
 <div class="content-header">
   <div class="container-fluid">
-    <div class="row mb-2">
+    <div class="row mb-1">
       <div class="col-sm-6">
-        <h1 class="m-0">Post List</h1>
+        <h1 class="mb-3 mx-1">Post List</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
-        <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">Post</li>
-        </ol>
+        <div class="float-right mx-2">
+          <%= link_to "New Post", new_post_path, class: "btn btn-success" %>
+          <a href="/posts/export.csv" class="btn btn-primary">Export CSV</a>
+        </div>
       </div><!-- /.col -->
     </div>
   </div>
 </div>
 <div class="content mx-3">
-  <div class="container-fluid py-4">
+  <div class="container-fluid py-1">
+    <!-- /notice message-->
     <% if flash[:notice] %>
       <div class="alert alert-success alert-dismissible">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <strong><%= flash[:notice] %></strong>
       </div>
     <% end %>
-    <div class="row justify-content-between pb-3 pl-2">
-      <div class="col-md-4">
-        <%= link_to "New Post", new_post_path, class: "btn btn-outline-success" %>
-        <a href="/posts/export.csv" class="btn btn-outline-primary">Export CSV</a>
+    <!-- /danger message-->
+    <% if flash[:danger] %>
+      <div class="alert alert-danger alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong><%= flash[:danger] %></strong>
       </div>
-      <div class="col-md-6">
-        <%= form_with url: '/posts', method: 'get', local: true, class: "d-flex" do |form| %>
+    <% end %>
+    <!-- /error message-->
+    <% if flash[:error] %>
+      <div class="alert alert-warning alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>
+          <% flash[:error].each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </strong>
+      </div>
+    <% end %>
+    <!-- /CSV import and search -->
+    <div class="row justify-content-between pb-3">
+      <div class="col-md-4">
+        <%= form_with url: '/posts/import', method: 'post', class: "d-flex" do |form| %>
+          <%= form.file_field :importFile, class: "form-control mr-1" %>
+          <%= form.submit "Import CSV", class: "btn btn-outline-primary" %>
+        <% end %>
+      </div>
+      <div class="col-md-4">
+        <%= form_with url: '/posts', method: 'get', class: "d-flex" do |form| %>
           <%= form.text_field :searchPost, class: "form-control mx-2", value: params[:searchPost], placeholder: "Search..." %>
           <%= form.submit "Search", class: "btn btn-outline-success" %>
         <% end %>
