@@ -8,9 +8,11 @@ class User < ApplicationRecord
 
     # validation
     validates :name, presence: true
-    validates :email, presence: true,format: { with: VALID_EMAIL_REGEX }
-    validates :password, presence: true, length: { minimum: 8, maximum: 255 }, :on => :create
+    validates :email, presence: true, format: { with: VALID_EMAIL_REGEX, :on => :create, :allow_blank => true }
+    validates :email, presence: true, format: { with: VALID_EMAIL_REGEX, :on => :update, :allow_blank => true }
+    validates :password, presence: true, length: { minimum: 8, maximum: 255 }, :on => :create, :allow_blank => true
     validates :password, presence: true, length: { minimum: 8, maximum: 255 }, :on => :update, :allow_blank => true
+    validates :role_id, presence: true
 
     # pagination
     paginates_per 10

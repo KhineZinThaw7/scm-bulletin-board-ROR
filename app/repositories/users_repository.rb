@@ -1,9 +1,11 @@
 class UsersRepository
   # Get All user List
-  def self.getUserList(searchName, searchEmail, sort, direction)
-    if searchName || searchEmail
-      users = User.where("name LIKE ? && email LIKE ?", 
-              "%#{searchName}%", "%#{searchEmail}%").order('id desc').page
+  def self.getUserList(searchUser, sort, direction)
+    if searchUser
+      users = User.joins(:role)
+              .where("roles.name LIKE ? || users.name LIKE ? || users.email LIKE ? || users.created_at LIKE ?", 
+              "%#{searchUser}%", "%#{searchUser}%", "%#{searchUser}%", "%#{searchUser}%")
+              .order('id desc').page
     elsif sort
       users = User.order(sort + ' ' + direction).page # sort column
     else

@@ -22,13 +22,10 @@
       </div>
     <% end %>
     <div class="row justify-content-between pb-3 pl-2">
-      <div class="col-md-4">
-        
-      </div>
+      <div class="col-md-4"></div>
       <div class="col-md-6">
         <%= form_with url: '/users', method: 'get', local: true, class: "d-flex" do |form| %>
-          <%= form.text_field :searchName, class: "form-control mx-2", value: params[:searchName], placeholder: "Search by name..." %>
-          <%= form.email_field :searchEmail, class: "form-control mx-2", value: params[:searchEmail], placeholder: "Search by email..." %>
+          <%= form.text_field :searchUser, class: "form-control mx-2", value: params[:searchUser], placeholder: "Search..." %>
           <%= form.submit "Search", class: "btn btn-outline-success" %>
         <% end %>
       </div>
@@ -37,8 +34,7 @@
       <table class="table table-bordered table-striped">
           <thead>
               <tr>
-                  <th>
-                    User Name
+                  <th>User Name
                     <%= link_to :sort => "name", :direction => 'desc' do  %><i class="fas fa-caret-square-up"></i><% end %>
                     <%= link_to :sort => "name", :direction => 'asc' do %><i class="fas fa-caret-square-down"></i><% end %>  
                   </th>

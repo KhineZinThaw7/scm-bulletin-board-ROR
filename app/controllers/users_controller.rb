@@ -5,8 +5,7 @@ class UsersController < ApplicationController
 
   # index user list
   def index
-    @users = UsersService.userList(params[:searchName], params[:searchEmail], 
-              params[:sort], params[:direction])
+    @users = UsersService.userList(params[:searchUser], params[:sort], params[:direction])
   end
 
   # user Detail
