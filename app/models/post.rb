@@ -22,7 +22,7 @@ class Post < ApplicationRecord
       columns = ActionController::Parameters.new(row.to_hash) # get column name 
       if row["action"] === "update" && row["id"] # if action is update
         begin
-          updatePost = Post.find(row["id"]) # find id and update this row
+          updatePost = Post.find_by_id(row["id"]) # find id and update this row
           updatePost.update! (columns.permit(:title, :description, :user_id, :category_id))
         rescue ActiveRecord::RecordInvalid => invalid
           return invalid.record.errors.full_messages # if validation error get, return this message

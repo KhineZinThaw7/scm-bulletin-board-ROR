@@ -6,10 +6,11 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   post 'logout', to: 'sessions#destroy'
 
-  # post and user csv export
+  # post and user csv export/import
   get 'posts/export', to: 'posts#export'
   get 'users/export', to: 'users#export'
   post 'posts/import', to: 'posts#import'
+  post 'users/import', to: 'users#import'
 
   # user profile
   get 'profile', to: 'users#profile',  as: 'profile'

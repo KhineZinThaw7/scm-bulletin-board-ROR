@@ -74,6 +74,22 @@ class UsersController < ApplicationController
     end
   end
 
+  # import
+  def import
+    if params[:importFile] # if param file is contained?
+      @user = User.import(params[:importFile])
+      if @user
+        flash[:danger] = "User CSV import failed!" # if get validation error
+        flash[:error] = @user
+      else
+        flash[:notice] = "User CSV successfully imported!" # if success
+      end  
+    else
+      flash[:danger] = "Please choose upload csv file!" # if parama file is not contained, get alert message
+    end
+    redirect_to '/users'
+  end
+
   private
 
   # user parameters
