@@ -1,9 +1,9 @@
 class UsersService
     # user list
-    # params searchName, searchEmail, sort and direction
+    # params searchUser, sort and direction
     # return users
-    def self.userList(searchName, searchEmail, sort, direction)
-      users = UsersRepository.getUserList(searchName, searchEmail, sort, direction)
+    def self.userList(searchUser, sort, direction)
+      users = UsersRepository.getUserList(searchUser, sort, direction)
     end
 
     # user detail

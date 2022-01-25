@@ -1,5 +1,5 @@
 <%- headers = ['Name', 'Email', 'Role'] -%>
-<%= CSV.generate_line headers %>
+<%=  CSV.generate_line(headers).strip.html_safe %>
 <%- @users.each do |user| -%>
-  <%= CSV.generate_line([user.name, user.email, user.role ? user.role.name : '']) -%>
+<%= CSV.generate_line([user.name, user.email, user.role ? user.role.name : '']) -%>
 <%- end -%>
