@@ -22,4 +22,30 @@ class User < ApplicationRecord
 
     # belongs to role
     belongs_to :role
+
+    # csv import
+    def self.import(file)
+      CSV.foreach(file, headers: true) do |row| # loop for row in the csv file
+        columns = ActionController::Parameters.new(row.to_hash) # get column name 
+        if row["action"] === "update" && row["id"] # if action is update
+          begin
+            updateUser = User.find_by_id(row["id"]) # find id and update this row
+            updateUser.update! (columns.permit(:name, :email, :password, :role_id))
+          rescue ActiveRecord::RecordInvalid => invalid
+            return invalid.record.errors.full_messages # if validation error get, return this message
+          end
+        elsif row["action"] === "delete" && row["id"] # if action is delete
+          begin
+            deleteUser = User.find_by_id(row["id"]) # find id and delete if this id is exist in the table
+            deleteUser.delete unless !deleteUser
+          end
+        else # create the row
+          begin
+            User.create! (columns.permit(:name, :email, :password, :role_id))
+          rescue ActiveRecord::RecordInvalid => invalid
+            return invalid.record.errors.full_messages # if validation error get, return this message
+          end
+        end
+      end
+    end 
 end

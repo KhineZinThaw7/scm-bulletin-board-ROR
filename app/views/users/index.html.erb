@@ -3,72 +3,115 @@
     <div class="row mb-2">
       <div class="col-sm-6">
         <h1 class="m-0">User List</h1>
-      </div><!-- /.col -->
+      </div>
+      <!-- /.col -->
       <div class="col-sm-6">
         <div class="float-right">
-          <%= link_to "New User", new_user_path, class: "btn btn-success" %>
+          <%= link_to "New User" , new_user_path, class: "btn btn-success" %>
           <a href="/users/export.csv" class="btn btn-primary">Export CSV</a>
         </div>
-      </div><!-- /.col -->
+      </div>
+      <!-- /.col -->
     </div>
   </div>
 </div>
 <div class="content mx-3">
   <div class="container-fluid py-4">
     <% if flash[:notice] %>
-      <div class="alert alert-success alert-dismissible">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <strong><%= flash[:notice] %></strong>
-      </div>
+    <div class="alert alert-success alert-dismissible">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close"
+        >&times;</a
+      >
+      <strong> <%= flash[:notice] %> </strong>
+    </div>
+    <% end %>
+    <!-- /danger message-->
+    <% if flash[:danger] %>
+    <div class="alert alert-danger alert-dismissible">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close"
+        >&times;</a
+      >
+      <strong> <%= flash[:danger] %> </strong>
+    </div>
+    <% end %>
+    <!-- /error message-->
+    <% if flash[:error] %>
+    <div class="alert alert-warning alert-dismissible">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close"
+        >&times;</a
+      >
+      <strong>
+        <% flash[:error].each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </strong>
+    </div>
     <% end %>
     <div class="row justify-content-between pb-3 pl-2">
-      <div class="col-md-4"></div>
-      <div class="col-md-6">
-        <%= form_with url: '/users', method: 'get', local: true, class: "d-flex" do |form| %>
-          <%= form.text_field :searchUser, class: "form-control mx-2", value: params[:searchUser], placeholder: "Search..." %>
-          <%= form.submit "Search", class: "btn btn-outline-success" %>
+      <div class="col-md-4">
+        <%= form_with url: '/users/import', method: 'post', class: "d-flex" do |form| %>
+          <%= form.file_field :importFile, class: "form-control mr-1" %>
+          <%= form.submit "Import CSV", class: "btn btn-outline-primary" %>
         <% end %>
+      </div>
+      <div class="col-md-4">
+        <%= form_with url: '/users' , method: 'get' , local: true, class:
+        "d-flex" do |form| %> <%= form.text_field :searchUser, class:
+        "form-control mx-2" , value: params[:searchUser], placeholder:
+        "Search..." %> <%= form.submit "Search" , class: "btn
+        btn-outline-success" %> <% end %>
       </div>
     </div>
     <div class="table-responsive">
       <table class="table table-bordered table-striped">
-          <thead>
-              <tr>
-                  <th>User Name
-                    <%= link_to :sort => "name", :direction => 'desc' do  %><i class="fas fa-caret-square-up"></i><% end %>
-                    <%= link_to :sort => "name", :direction => 'asc' do %><i class="fas fa-caret-square-down"></i><% end %>  
-                  </th>
-                  <th>Email
-                    <%= link_to :sort => "email", :direction => 'desc' do %><i class="fas fa-caret-square-up"></i><% end %>
-                    <%= link_to :sort => "email", :direction => 'asc' do %><i class="fas fa-caret-square-down"></i><% end %>
-                  </th>
-                  <th>Role</th>
-                  <th>Created Date
-                    <%= link_to :sort => "created_at", :direction => 'desc' do %><i class="fas fa-caret-square-up"></i><% end %>
-                    <%= link_to :sort => "created_at", :direction => 'asc' do %><i class="fas fa-caret-square-down"></i><% end %>
-                  </th>
-                  <th collapse=2>Operation</th>
-              </tr>
-          </thead>
-          <tbody>
-              <% @users.each do |user| %>
-              <tr>
-                  <td><%= link_to user.name, user %></td>
-                  <td><%= user.email %></td>
-                  <td><%= user.role.name %></td>
-                  <td><%= user.created_at.strftime('%Y/%m/%d') %></td>
-                  <td><%= link_to "Edit", edit_user_path(user), 
-                                  class: "btn btn-info" %>
-                  <% if authUser.id != user.id %>
-                    <%= link_to "Delete", user_path(user),
-                                    method: :delete,
-                                    data: { confirm: "Are you sure?" }, 
-                                    class: "btn btn-danger" %>
-                  <% end %>
-                  </td>
-              </tr>
-              <%end%>
-          </tbody>
+        <thead>
+          <tr>
+            <th>
+              User Name <%= link_to :sort=> "name", :direction => 'desc' do %><i
+                class="fas fa-caret-square-up"
+              ></i>
+              <% end %> <%= link_to :sort=> "name", :direction => 'asc' do %><i
+                class="fas fa-caret-square-down"
+              ></i>
+              <% end %>
+            </th>
+            <th>
+              Email <%= link_to :sort=> "email", :direction => 'desc' do %><i
+                class="fas fa-caret-square-up"
+              ></i>
+              <% end %> <%= link_to :sort=> "email", :direction => 'asc' do %><i
+                class="fas fa-caret-square-down"
+              ></i>
+              <% end %>
+            </th>
+            <th>Role</th>
+            <th>
+              Created Date <%= link_to :sort=> "created_at", :direction =>
+              'desc' do %><i class="fas fa-caret-square-up"></i> <% end %> <%=
+              link_to :sort=> "created_at", :direction => 'asc' do %><i
+                class="fas fa-caret-square-down"
+              ></i>
+              <% end %>
+            </th>
+            <th collapse="2">Operation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+          <tr>
+            <td><%= link_to user.name, user %></td>
+            <td><%= user.email %></td>
+            <td><%= user.role.name %></td>
+            <td><%= user.created_at.strftime('%Y/%m/%d') %></td>
+            <td>
+              <%= link_to "Edit" , edit_user_path(user), class: "btn btn-info"
+              %> <% if authUser.id !=user.id %> <%= link_to "Delete" ,
+              user_path(user), method: :delete, data: { confirm: "Are you sure?"
+              }, class: "btn btn-danger" %> <% end %>
+            </td>
+          </tr>
+          <%end%>
+        </tbody>
       </table>
     </div>
     <%= paginate @users %>
