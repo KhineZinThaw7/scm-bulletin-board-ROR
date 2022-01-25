@@ -6,26 +6,26 @@
       <div class="form-group row">
           <label for="name" class="col-sm-2 col-form-label">Name</label>
           <div class="col-sm-10">
-              <label for="name" class="col-sm-10 col-form-label"><%= @user.name %></label>
+              <span for="name" class="col-sm-10 col-form-label"><%= @user.name %></span>
           </div>
       </div>
       <div class="form-group row">
           <label for="email" class="col-sm-2 col-form-label">Email</label>
           <div class="col-sm-10">
-              <label for="email" class="col-sm-10 col-form-label"><%= @user.email %></label>
+              <span for="email" class="col-sm-10 col-form-label"><%= @user.email %></span>
           </div>
       </div>
       <div class="form-group row">
           <label for="date" class="col-sm-2 col-form-label">Created Date</label>
           <div class="col-sm-10">
-              <label for="date" class="col-sm-10 col-form-label"><%= @user.created_at.strftime('%Y/%m/%d') %></label>
+              <span for="date" class="col-sm-10 col-form-label"><%= @user.created_at.strftime('%Y/%m/%d') %></span>
           </div>
       </div>
       <div class="form-group row">
           <label for="posts" class="col-sm-2 col-form-label">My Posts</label>
           <div class="col-sm-10">
               <% @user.posts.each do |post| %>
-                  <label for="title" class="col-sm-10 col-form-label"><%= link_to post.title, post %></label>
+                  <span for="title" class="col-sm-10 col-form-label"><%= link_to post.title, post %></span><br>
               <% end %>
           </div>
       </div>
