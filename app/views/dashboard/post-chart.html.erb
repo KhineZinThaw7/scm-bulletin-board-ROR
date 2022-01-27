@@ -1,0 +1,26 @@
+<div class="row">
+  <%= link_to "Back", '/dashboard', class: "btn btn-secondary float-right mb-3 mx-2" %>
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header border-0">
+        <div class="d-flex justify-content-between">
+          <h1 class="card-title"><b>Posts</b></h1>
+          <a href="/posts">See All Posts</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="d-flex">
+          <p class="d-flex flex-column">
+            <span class="text-bold text-lg"><%= Post.count %> Posts</span>
+          </p>
+        </div>
+        <!-- /.d-flex -->
+
+        <div class="position-relative mb-4">
+          <%= column_chart @postCount %>
+        </div>
+      </div>
+    </div>
+    <!-- /.card -->
+  </div>
+</div>

@@ -1,1 +1,38 @@
-<h1 class="text-center">Welcom to dashboard</h1>
+<h1 class="text-center">Dashboard</h1>
+<div class="card p-5 my-3">
+  <div class="row justify-content-center pb-3">
+    <%= link_to 'User Chart',  userChart_path() , class: 'btn btn-primary mx-3' %>
+    <%= link_to 'Post Chart',  postChart_path() , class: 'btn btn-success' %>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="small-box bg-info">
+        <div class="inner">
+          <h3><%=  User.count %></h3>
+          <p>New Users</p>
+        </div>
+        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-md-4">
+      <div class="small-box bg-success">
+        <div class="inner">
+          <h3><%=  Post.count %></h3>
+          <p>New Posts</p>
+        </div>
+        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+      <!-- ./col -->
+      <div class="col-md-4">
+        <div class="small-box bg-primary">
+          <div class="inner">
+            <h3><%=  Category.count %></h3>
+            <p>New Categories</p>
+          </div>
+          <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+      </div>
+  </div>
+</div>

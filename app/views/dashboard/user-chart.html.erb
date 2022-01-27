@@ -1,0 +1,27 @@
+<div class="row mb-3">
+  <%= link_to "Back", '/dashboard', class: "btn btn-secondary float-right mb-3 mx-2" %>
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header border-0">
+        <div class="d-flex justify-content-between">
+          <h1 class="card-title"><b>Users</b></h1>
+          <a href="/users">See All Users</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="d-flex">
+          <p class="d-flex flex-column">
+            <span class="text-bold text-lg"><%= User.count %> Users</span>
+          </p>
+        </div>
+        <!-- /.d-flex -->
+
+        <div class="position-relative mb-4">
+          <%= line_chart @userCount %>
+        </div>
+      </div>
+    </div>
+    <!-- /.card -->
+  </div>
+</div>
+  
