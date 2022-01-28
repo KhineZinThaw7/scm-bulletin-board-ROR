@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
   # dashboard
   get '/dashboard', to: 'dashboard#index'
+  get '/dashboard/user-chart', to: 'dashboard#userChart',  as: 'userChart'
+  get '/dashboard/post-chart', to: 'dashboard#postChart',  as: 'postChart'
 
   # landing
   get '/', to: 'landing#index'
