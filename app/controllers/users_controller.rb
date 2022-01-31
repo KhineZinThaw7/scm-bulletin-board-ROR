@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   layout 'admin/admin'
   before_action :authorized
-  before_action :adminRole
+  before_action :adminRole, except: [:profile]
 
   # index user list
   def index

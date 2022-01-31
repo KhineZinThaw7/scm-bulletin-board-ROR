@@ -24,6 +24,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'kaminari'
 gem 'chartkick'
 gem "groupdate"
+gem "mail_form"
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
