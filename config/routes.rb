@@ -6,6 +6,12 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   post 'logout', to: 'sessions#destroy'
 
+  # forget password and reset password
+  get 'forget-password', to: 'forget_password#forgetPassword'
+  post 'forget-password', to: 'forget_password#forgetPasswordEmail'
+  get 'reset-password', to: 'forget_password#new'
+  post 'reset-password', to: 'forget_password#resetPassword'
+
   # post and user csv export/import
   get 'posts/export', to: 'posts#export'
   get 'users/export', to: 'users#export'
