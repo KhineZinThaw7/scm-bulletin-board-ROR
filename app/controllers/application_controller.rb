@@ -1,5 +1,7 @@
 require 'csv'
 class ApplicationController < ActionController::Base
+    around_action :switch_locale
+
     before_action :authorized
     helper_method :authUser
     helper_method :logged_in?
@@ -45,5 +47,11 @@ class ApplicationController < ActionController::Base
     def postUser(postId)
         post = Post.find(postId)
         post.user.id === authUser.id
+    end
+
+    # change language
+    def switch_locale(&action)
+        locale = params[:locale] || I18n.default_locale
+        I18n.with_locale(locale, &action)
     end
 end

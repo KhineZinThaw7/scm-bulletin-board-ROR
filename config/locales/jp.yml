@@ -23,30 +23,29 @@
 #
 # Instead, surround them with single quotes.
 #
-# en:
+# jp:
 #   'true': 'foo'
 #
 # To learn more, please read the Rails Internationalization guide
 # available at https://guides.rubyonrails.org/i18n.html.
 
-en:
+jp:  
   # admin nav and sidebar
-  profile: "Profile"
-  home: "Home"
-  logout: "Logout"
-  users: "Users"
-  categories: "Categories"
-  posts: "Posts"
+  profile: "プロフィール"
+  home: "家"
+  logout: "ログアウト"
+  users: "ユーザー"
+  categories: "カテゴリ"
+  posts: "投稿"
 
   # common
-  export_csv: "Export CSV"
-  import_csv: "Import CSV"
-  search: "Search"
-  edit: "Edit"
-  delete: "Delete"
-  create: "Create"
-  update: "Update"
-  back: "Back"
+  export_csv: "CSVをエクスポート"
+  import_csv: "CSVをインポート"
+  search: "探す"
+  edit: "編集"
+  delete: "削除"
+  create: "作成"
+  update: "アップデート"
+  back: "戻る"
 
-  japanese: "Japanese"
-
+  japanese: "日本"

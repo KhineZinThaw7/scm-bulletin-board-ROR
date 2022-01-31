@@ -41,9 +41,9 @@
                     <td><%= link_to category.name, category %></td>
                     <td><%= category.created_at.strftime('%b %d, %Y') %></td>
                     <td>
-                      <%= link_to "Edit", edit_category_path(category), 
+                      <%= link_to t('edit'), edit_category_path(category), 
                                       class: "btn btn-info" %>
-                      <%= link_to "Delete", category_path(category),
+                      <%= link_to t('delete'), category_path(category),
                                       method: :delete,
                                       data: { confirm: "Are you sure?" }, 
                                       class: "btn btn-danger" %></td>
