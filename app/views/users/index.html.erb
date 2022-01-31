@@ -7,8 +7,8 @@
       <!-- /.col -->
       <div class="col-sm-6">
         <div class="float-right">
-          <%= link_to "New User" , new_user_path, class: "btn btn-success" %>
-          <a href="/users/export.csv" class="btn btn-primary">Export CSV</a>
+          <%= link_to t('new_user') , new_user_path, class: "btn btn-success" %>
+          <a href="/users/export.csv" class="btn btn-primary"><%= t('export_csv') %></a>
         </div>
       </div>
       <!-- /.col -->
@@ -51,14 +51,14 @@
       <div class="col-md-4">
         <%= form_with url: '/users/import', method: 'post', class: "d-flex" do |form| %>
           <%= form.file_field :importFile, class: "form-control mr-1" %>
-          <%= form.submit "Import CSV", class: "btn btn-outline-primary" %>
+          <%= form.submit t('import_csv'), class: "btn btn-outline-primary" %>
         <% end %>
       </div>
       <div class="col-md-4">
         <%= form_with url: '/users' , method: 'get' , local: true, class:
         "d-flex" do |form| %> <%= form.text_field :searchUser, class:
         "form-control mx-2" , value: params[:searchUser], placeholder:
-        "Search..." %> <%= form.submit "Search" , class: "btn
+        "Search..." %> <%= form.submit t('search') , class: "btn
         btn-outline-success" %> <% end %>
       </div>
     </div>
@@ -104,8 +104,8 @@
             <td><%= user.role.name %></td>
             <td><%= user.created_at.strftime('%Y/%m/%d') %></td>
             <td>
-              <%= link_to "Edit" , edit_user_path(user), class: "btn btn-info"
-              %> <% if authUser.id !=user.id %> <%= link_to "Delete" ,
+              <%= link_to t('edit') , edit_user_path(user), class: "btn btn-info"
+              %> <% if authUser.id !=user.id %> <%= link_to t('delete') ,
               user_path(user), method: :delete, data: { confirm: "Are you sure?"
               }, class: "btn btn-danger" %> <% end %>
             </td>

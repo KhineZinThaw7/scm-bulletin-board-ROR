@@ -13,6 +13,7 @@ class User < ApplicationRecord
     validates :password, presence: true, length: { minimum: 8, maximum: 255 }, :on => :create, :allow_blank => true
     validates :password, presence: true, length: { minimum: 8, maximum: 255 }, :on => :update, :allow_blank => true
     validates :role_id, presence: true
+    validates_confirmation_of :password, :on => :create, :allow_blank => true
 
     # pagination
     paginates_per 10
