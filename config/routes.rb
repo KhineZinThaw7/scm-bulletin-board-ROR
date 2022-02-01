@@ -9,8 +9,8 @@ Rails.application.routes.draw do
   # forget password and reset password
   get 'forget-password', to: 'forget_password#forgetPassword'
   post 'forget-password', to: 'forget_password#forgetPasswordEmail'
-  get 'reset-password', to: 'forget_password#new'
-  post 'reset-password', to: 'forget_password#resetPassword'
+  get 'reset-password/:id', to: 'forget_password#new'
+  put 'reset-password/:id', to: 'forget_password#resetPassword', as: 'passwordReset'
 
   # post and user csv export/import
   get 'posts/export', to: 'posts#export'

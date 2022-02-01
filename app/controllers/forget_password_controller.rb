@@ -11,8 +11,8 @@ class ForgetPasswordController < ApplicationController
   def forgetPasswordEmail
     @user = User.find_by(email: params[:email]) 
     if @user
+        @user.send_password_reset
         flash[:notice] = "Email sent successfully, please check your email!"
-        UserMailer.forget_password_email(@user).deliver
         redirect_to '/forget-password'
     else
         flash[:warning] = "Email is invalid"
@@ -23,18 +23,18 @@ class ForgetPasswordController < ApplicationController
   # reset password view
   def new
     @categories = Category.all
+    @user = User.find_by_password_reset_token!(params[:id])
     render template: "forget_password/reset_password"
   end
 
   # make reset password
   def resetPassword
-    @user = User.find_by(email: params[:email])
-    if @user && @user.update(password: params[:password])
+    @user = User.find_by_password_reset_token!(params[:id])
+    if @user.update(params.require(:user).permit(:password))
       session[:user_id] = @user.id
       redirect_to '/dashboard'
     else
-      flash[:warning] = "Something wrong! Please check your information."
-      redirect_to '/reset-password'
+      redirect_to passwordReset_path(params[:id])
     end
   end
 end
