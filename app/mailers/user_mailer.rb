@@ -4,14 +4,14 @@ class UserMailer < ApplicationMailer
   # welcome mail
   def welcome_email(user)
       @user = user
-      @url = 'http://localhost:3000/login'
+      @url = "http://localhost:3000/login"
       mail(to: @user.email, subject: 'Welcome to My Website')
   end
 
   # forget password mail
   def forget_password_email(user)
     @user = user
-    @url = 'http://localhost:3000/reset-password'
+    @url = "http://localhost:3000/reset-password/#{user.password_reset_token}"
     mail(to: @user.email, subject: 'Forget Password Information')
   end
 end
